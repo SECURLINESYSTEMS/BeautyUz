@@ -7,7 +7,6 @@
 <title>BeautyUz — Найди своего мастера</title>
 
 <style>
-
 *{
   margin:0;
   padding:0;
@@ -16,24 +15,28 @@
 
 :root{
   --primary:#e85d8c;
-  --primary-dark:#d94778;
-  --dark:#24212a;
+  --primary-dark:#cf3f70;
+  --dark:#25212a;
   --gray:#777;
   --light:#faf7f8;
-  --white:#ffffff;
-  --border:#eeeeee;
-  --shadow:0 8px 30px rgba(0,0,0,.08);
+  --white:#fff;
+  --border:#eee;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
 body{
   font-family:Arial,sans-serif;
   background:var(--light);
   color:var(--dark);
-  padding-bottom:90px;
+  padding-bottom:85px;
 }
 
-button,input{
+button,input,textarea{
   font-family:inherit;
+}
+
+button{
+  cursor:pointer;
 }
 
 .container{
@@ -45,15 +48,16 @@ button,input{
 /* HEADER */
 
 header{
+  height:68px;
   background:white;
+  border-bottom:1px solid var(--border);
   position:sticky;
   top:0;
   z-index:100;
-  border-bottom:1px solid var(--border);
 }
 
 .header-content{
-  height:70px;
+  height:100%;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -67,10 +71,10 @@ header{
 }
 
 .city{
-  background:#fff3f7;
-  color:var(--primary);
-  padding:9px 13px;
+  background:#fff0f5;
+  padding:9px 14px;
   border-radius:20px;
+  color:var(--primary);
   font-size:14px;
 }
 
@@ -78,22 +82,16 @@ header{
 
 .page{
   display:none;
-  animation:fade .25s ease;
 }
 
 .page.active{
   display:block;
 }
 
-@keyframes fade{
-  from{opacity:0;transform:translateY(8px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
 /* HERO */
 
 .hero{
-  padding:30px 0 15px;
+  padding:30px 0 10px;
 }
 
 .hero h1{
@@ -107,18 +105,18 @@ header{
 }
 
 .search-box{
-  margin-top:22px;
+  display:flex;
   background:white;
   border-radius:18px;
   padding:7px;
-  display:flex;
+  margin-top:22px;
   box-shadow:var(--shadow);
 }
 
 .search-box input{
+  flex:1;
   border:none;
   outline:none;
-  flex:1;
   padding:14px;
   font-size:15px;
 }
@@ -129,11 +127,10 @@ header{
   color:white;
   border-radius:14px;
   padding:0 20px;
-  font-size:17px;
-  cursor:pointer;
+  font-size:18px;
 }
 
-/* SECTIONS */
+/* SECTION */
 
 .section{
   margin-top:32px;
@@ -154,24 +151,21 @@ header{
   border:none;
   background:none;
   color:var(--primary);
-  font-size:14px;
-  cursor:pointer;
 }
 
 /* CATEGORIES */
 
 .categories{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
+  grid-template-columns:repeat(6,1fr);
+  gap:10px;
 }
 
 .category{
   background:white;
-  border-radius:18px;
   padding:16px 8px;
+  border-radius:18px;
   text-align:center;
-  cursor:pointer;
   box-shadow:0 5px 20px rgba(0,0,0,.04);
   transition:.2s;
 }
@@ -181,8 +175,8 @@ header{
 }
 
 .category-icon{
-  font-size:28px;
-  margin-bottom:8px;
+  font-size:27px;
+  margin-bottom:7px;
 }
 
 .category p{
@@ -203,13 +197,12 @@ header{
   border-radius:20px;
   overflow:hidden;
   box-shadow:var(--shadow);
-  cursor:pointer;
-  transition:.2s;
   position:relative;
+  transition:.2s;
 }
 
 .salon-card:hover{
-  transform:translateY(-5px);
+  transform:translateY(-4px);
 }
 
 .salon-image{
@@ -223,12 +216,11 @@ header{
 }
 
 .salon-info h3{
-  font-size:18px;
   margin-bottom:8px;
 }
 
 .rating{
-  color:#f5a623;
+  color:#e69a16;
   font-size:14px;
   margin-bottom:7px;
 }
@@ -244,60 +236,34 @@ header{
   margin-top:10px;
 }
 
+.categories-small{
+  margin-top:10px;
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+}
+
+.tag{
+  background:#fff0f5;
+  color:var(--primary);
+  padding:5px 8px;
+  border-radius:12px;
+  font-size:11px;
+}
+
 .favorite{
   position:absolute;
-  right:12px;
   top:12px;
+  right:12px;
   width:42px;
   height:42px;
-  border-radius:50%;
   border:none;
+  border-radius:50%;
   background:white;
   font-size:20px;
-  cursor:pointer;
 }
 
-/* MASTERS */
-
-.masters{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-
-.master{
-  background:white;
-  padding:20px;
-  border-radius:20px;
-  text-align:center;
-  box-shadow:var(--shadow);
-}
-
-.avatar{
-  width:80px;
-  height:80px;
-  margin:auto;
-  border-radius:50%;
-  background-size:cover;
-  background-position:center;
-  margin-bottom:12px;
-}
-
-.master h3{
-  margin-bottom:5px;
-}
-
-.master p{
-  font-size:13px;
-  color:var(--gray);
-}
-
-.master-rating{
-  margin-top:8px;
-  color:#f5a623;
-}
-
-/* SEARCH PAGE */
+/* SEARCH */
 
 .search-page{
   padding-top:25px;
@@ -311,30 +277,25 @@ header{
 .search-input{
   width:100%;
   padding:17px;
-  border:1px solid var(--border);
   border-radius:16px;
+  border:1px solid var(--border);
   outline:none;
   font-size:16px;
-}
-
-.search-input:focus{
-  border-color:var(--primary);
 }
 
 .filter-buttons{
   display:flex;
   gap:10px;
   overflow-x:auto;
-  margin:18px 0;
+  padding:16px 0;
 }
 
 .filter{
-  white-space:nowrap;
-  padding:10px 16px;
-  border-radius:20px;
   border:none;
   background:white;
-  cursor:pointer;
+  padding:11px 16px;
+  border-radius:20px;
+  white-space:nowrap;
 }
 
 .filter.active{
@@ -359,10 +320,10 @@ header{
 
 .booking-card{
   background:white;
-  border-radius:20px;
   padding:20px;
-  margin-bottom:15px;
+  border-radius:20px;
   box-shadow:var(--shadow);
+  margin-bottom:15px;
 }
 
 .booking-card h3{
@@ -373,9 +334,9 @@ header{
   display:inline-block;
   margin-top:12px;
   padding:7px 12px;
-  background:#e8f8ed;
-  color:#2c9a50;
   border-radius:15px;
+  background:#e7f8ec;
+  color:#29934d;
   font-size:13px;
 }
 
@@ -383,24 +344,23 @@ header{
 
 .profile-card{
   background:white;
-  padding:25px;
+  padding:28px;
   border-radius:24px;
-  text-align:center;
   box-shadow:var(--shadow);
+  text-align:center;
   margin-top:25px;
 }
 
 .profile-avatar{
   width:85px;
   height:85px;
-  background:#ffe5ee;
-  color:var(--primary);
+  margin:auto;
+  border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:35px;
-  border-radius:50%;
-  margin:auto;
+  background:#ffe5ee;
+  font-size:38px;
 }
 
 .profile-card h2{
@@ -427,7 +387,21 @@ header{
   justify-content:space-between;
 }
 
-/* BOTTOM NAV */
+/* BUTTON */
+
+.main-btn{
+  width:100%;
+  margin-top:20px;
+  padding:16px;
+  border:none;
+  border-radius:15px;
+  background:var(--primary);
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+}
+
+/* NAV */
 
 .bottom-nav{
   position:fixed;
@@ -448,8 +422,11 @@ header{
   background:none;
   color:var(--gray);
   font-size:11px;
-  cursor:pointer;
-  min-width:55px;
+}
+
+.nav-item.active{
+  color:var(--primary);
+  font-weight:bold;
 }
 
 .nav-icon{
@@ -458,21 +435,16 @@ header{
   margin-bottom:4px;
 }
 
-.nav-item.active{
-  color:var(--primary);
-  font-weight:bold;
-}
-
 /* MODAL */
 
 .modal{
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.55);
-  z-index:2000;
   display:none;
   align-items:flex-end;
   justify-content:center;
+  z-index:2000;
 }
 
 .modal.active{
@@ -480,52 +452,32 @@ header{
 }
 
 .modal-content{
-  background:white;
   width:100%;
   max-width:650px;
   max-height:92vh;
-  overflow-y:auto;
+  overflow:auto;
+  background:white;
   border-radius:28px 28px 0 0;
   padding:24px;
-  animation:slideUp .3s ease;
-}
-
-@keyframes slideUp{
-  from{transform:translateY(100%)}
-  to{transform:translateY(0)}
 }
 
 .close{
   float:right;
   border:none;
-  background:#f5f5f5;
+  background:#f3f3f3;
   width:38px;
   height:38px;
   border-radius:50%;
   font-size:20px;
-  cursor:pointer;
 }
 
 .modal-image{
   width:100%;
-  height:230px;
+  height:220px;
   border-radius:18px;
   background-size:cover;
   background-position:center;
   margin:15px 0;
-}
-
-.modal h2{
-  margin:10px 0;
-}
-
-.modal-text{
-  color:var(--gray);
-  line-height:1.6;
-}
-
-.service-list{
-  margin-top:20px;
 }
 
 .service{
@@ -535,61 +487,98 @@ header{
   border-bottom:1px solid var(--border);
 }
 
-.book-button{
-  width:100%;
-  border:none;
-  background:var(--primary);
-  color:white;
-  padding:17px;
-  border-radius:16px;
-  font-size:16px;
-  font-weight:bold;
-  margin-top:20px;
-  cursor:pointer;
+.master-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid var(--border);
 }
 
-/* BOOKING MODAL */
-
-.booking-step{
-  margin-top:20px;
+.master-photo{
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background-size:cover;
+  background-position:center;
 }
+
+/* BOOKING OPTIONS */
 
 .booking-option{
   padding:15px;
   border:1px solid var(--border);
   border-radius:14px;
   margin-top:10px;
-  cursor:pointer;
 }
 
-.booking-option:hover,
 .booking-option.selected{
   border-color:var(--primary);
-  background:#fff5f8;
+  background:#fff4f7;
 }
 
-.date-row,
-.time-row{
+.options-row{
   display:flex;
-  gap:10px;
+  gap:8px;
   flex-wrap:wrap;
-  margin-top:15px;
+  margin-top:12px;
 }
 
-.date-btn,
-.time-btn{
+.option-btn{
   border:1px solid var(--border);
   background:white;
-  padding:12px;
+  padding:11px;
   border-radius:12px;
-  cursor:pointer;
 }
 
-.date-btn.selected,
-.time-btn.selected{
+.option-btn.selected{
   background:var(--primary);
   color:white;
   border-color:var(--primary);
+}
+
+/* FORMS */
+
+.form-input{
+  width:100%;
+  padding:15px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  outline:none;
+  margin-top:10px;
+}
+
+.form-input:focus{
+  border-color:var(--primary);
+}
+
+.form-label{
+  display:block;
+  margin-top:16px;
+  font-weight:bold;
+}
+
+.auth-switch{
+  text-align:center;
+  margin-top:16px;
+  color:var(--gray);
+}
+
+.auth-switch span{
+  color:var(--primary);
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* REVIEW */
+
+.review{
+  padding:15px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.review small{
+  color:var(--gray);
 }
 
 /* TOAST */
@@ -599,15 +588,13 @@ header{
   top:85px;
   left:50%;
   transform:translateX(-50%);
-  background:#24212a;
+  background:#25212a;
   color:white;
   padding:14px 20px;
   border-radius:14px;
-  z-index:5000;
   display:none;
+  z-index:5000;
 }
-
-/* MOBILE */
 
 @media(max-width:700px){
 
@@ -616,29 +603,15 @@ header{
   }
 
   .categories{
-    gap:8px;
-  }
-
-  .category{
-    padding:12px 4px;
-  }
-
-  .category-icon{
-    font-size:24px;
+    grid-template-columns:repeat(3,1fr);
   }
 
   .salons-grid{
-    display:flex;
-    overflow-x:auto;
-    padding-bottom:10px;
+    grid-template-columns:1fr;
   }
 
   .salon-card{
-    min-width:265px;
-  }
-
-  .masters{
-    grid-template-columns:repeat(2,1fr);
+    display:block;
   }
 
 }
@@ -649,17 +622,15 @@ header{
 <body>
 
 <header>
-  <div class="container header-content">
+<div class="container header-content">
 
-    <div class="logo" onclick="showPage('home')">
-      BeautyUz ✨
-    </div>
+<div class="logo" onclick="showPage('home')">
+BeautyUz ✨
+</div>
 
-    <div class="city">
-      📍 Ташкент
-    </div>
+<div class="city">📍 Ташкент</div>
 
-  </div>
+</div>
 </header>
 
 
@@ -673,16 +644,13 @@ header{
 
 <h1>Найди своего идеального мастера ✨</h1>
 
-<p>Лучшие салоны красоты и мастера рядом с вами</p>
+<p>Салоны красоты, мастера и онлайн-запись в одном месте</p>
 
 <div class="search-box">
 
-<input
-id="homeSearch"
-type="text"
-placeholder="Поиск салона, услуги или мастера..."
-onkeydown="if(event.key==='Enter') goSearch()"
->
+<input id="homeSearch"
+placeholder="Салон, услуга или мастер..."
+onkeydown="if(event.key==='Enter')goSearch()">
 
 <button class="search-btn" onclick="goSearch()">🔍</button>
 
@@ -694,39 +662,11 @@ onkeydown="if(event.key==='Enter') goSearch()"
 <div class="section">
 
 <div class="section-header">
-
 <h2>Популярные услуги</h2>
-
-<button class="link-btn" onclick="showPage('search')">
-Все →
-</button>
-
+<button class="link-btn" onclick="showPage('search')">Все →</button>
 </div>
 
-
-<div class="categories">
-
-<div class="category" onclick="categorySearch('Волосы')">
-<div class="category-icon">💇‍♀️</div>
-<p>Волосы</p>
-</div>
-
-<div class="category" onclick="categorySearch('Маникюр')">
-<div class="category-icon">💅</div>
-<p>Маникюр</p>
-</div>
-
-<div class="category" onclick="categorySearch('Ресницы')">
-<div class="category-icon">👁️</div>
-<p>Ресницы</p>
-</div>
-
-<div class="category" onclick="categorySearch('Макияж')">
-<div class="category-icon">💄</div>
-<p>Макияж</p>
-</div>
-
-</div>
+<div class="categories" id="categories"></div>
 
 </div>
 
@@ -734,75 +674,11 @@ onkeydown="if(event.key==='Enter') goSearch()"
 <div class="section">
 
 <div class="section-header">
-
 <h2>⭐ Лучшие салоны</h2>
-
-<button class="link-btn" onclick="showPage('search')">
-Все →
-</button>
-
+<button class="link-btn" onclick="showPage('search')">Все →</button>
 </div>
 
 <div class="salons-grid" id="homeSalons"></div>
-
-</div>
-
-
-<div class="section">
-
-<div class="section-header">
-
-<h2>🔥 Популярные мастера</h2>
-
-</div>
-
-<div class="masters">
-
-<div class="master">
-
-<div class="avatar"
-style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80')">
-</div>
-
-<h3>Малика</h3>
-
-<p>💅 Nail Master</p>
-
-<div class="master-rating">⭐ 4.9</div>
-
-</div>
-
-
-<div class="master">
-
-<div class="avatar"
-style="background-image:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80')">
-</div>
-
-<h3>Сабина</h3>
-
-<p>💇 Hair Stylist</p>
-
-<div class="master-rating">⭐ 4.8</div>
-
-</div>
-
-
-<div class="master">
-
-<div class="avatar"
-style="background-image:url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80')">
-</div>
-
-<h3>Дина</h3>
-
-<p>👁️ Lash Master</p>
-
-<div class="master-rating">⭐ 4.9</div>
-
-</div>
-
-</div>
 
 </div>
 
@@ -819,37 +695,12 @@ style="background-image:url('https://images.unsplash.com/photo-1517841905240-472
 
 <h1 class="big-title">Поиск 🔍</h1>
 
-<input
-id="searchInput"
+<input id="searchInput"
 class="search-input"
-type="text"
-placeholder="Салон, мастер или услуга..."
-oninput="renderSearch()"
->
+placeholder="Поиск салона или услуги..."
+oninput="renderSearch()">
 
-<div class="filter-buttons">
-
-<button class="filter active" onclick="setFilter('Все',this)">
-Все
-</button>
-
-<button class="filter" onclick="setFilter('Волосы',this)">
-💇 Волосы
-</button>
-
-<button class="filter" onclick="setFilter('Маникюр',this)">
-💅 Маникюр
-</button>
-
-<button class="filter" onclick="setFilter('Ресницы',this)">
-👁️ Ресницы
-</button>
-
-<button class="filter" onclick="setFilter('Макияж',this)">
-💄 Макияж
-</button>
-
-</div>
+<div class="filter-buttons" id="filters"></div>
 
 <div class="salons-grid" id="searchResults"></div>
 
@@ -894,77 +745,43 @@ oninput="renderSearch()"
 
 <div class="container">
 
-<div class="profile-card">
-
-<div class="profile-avatar">
-👤
-</div>
-
-<h2>Гость</h2>
-
-<p>Войдите, чтобы сохранять все данные</p>
-
-<button class="book-button" onclick="showToast('Регистрация будет добавлена на следующем этапе')">
-Войти / Зарегистрироваться
-</button>
-
-</div>
-
-
-<div class="profile-menu">
-
-<div class="profile-item">
-<span>📅 Мои записи</span>
-<span>›</span>
-</div>
-
-<div class="profile-item">
-<span>❤️ Избранное</span>
-<span>›</span>
-</div>
-
-<div class="profile-item">
-<span>🔔 Уведомления</span>
-<span>›</span>
-</div>
-
-<div class="profile-item">
-<span>⚙️ Настройки</span>
-<span>›</span>
-</div>
-
-</div>
+<div id="profileContent"></div>
 
 </div>
 
 </div>
 
 
-<!-- BOTTOM NAV -->
+<!-- NAVIGATION -->
 
 <nav class="bottom-nav">
 
-<button class="nav-item active" data-page="home" onclick="showPage('home')">
+<button class="nav-item active" data-page="home"
+onclick="showPage('home')">
 <span class="nav-icon">🏠</span>
 Главная
 </button>
 
-<button class="nav-item" data-page="search" onclick="showPage('search')">
+<button class="nav-item" data-page="search"
+onclick="showPage('search')">
 <span class="nav-icon">🔍</span>
 Поиск
 </button>
 
-<button class="nav-item" data-page="bookings" onclick="showPage('bookings')">
+<button class="nav-item" data-page="bookings"
+onclick="showPage('bookings')">
 <span class="nav-icon">📅</span>
 Записи
 </button>
 
-<button class="nav-item" data-page="favorites" onclick="showPage('favorites')">
+<button class="nav-item" data-page="favorites"
+onclick="showPage('favorites')">
 <span class="nav-icon">❤️</span>
 Избранное
 </button>
 
-<button class="nav-item" data-page="profile" onclick="showPage('profile')">
+<button class="nav-item" data-page="profile"
+onclick="showPage('profile')">
 <span class="nav-icon">👤</span>
 Профиль
 </button>
@@ -975,305 +792,304 @@ oninput="renderSearch()"
 <!-- SALON MODAL -->
 
 <div class="modal" id="salonModal">
-
 <div class="modal-content">
 
-<button class="close" onclick="closeSalon()">✕</button>
+<button class="close" onclick="closeModal('salonModal')">✕</button>
 
 <div id="salonDetails"></div>
 
 </div>
-
 </div>
 
 
 <!-- BOOKING MODAL -->
 
 <div class="modal" id="bookingModal">
-
 <div class="modal-content">
 
-<button class="close" onclick="closeBooking()">✕</button>
+<button class="close" onclick="closeModal('bookingModal')">✕</button>
 
 <h2>Онлайн-запись 📅</h2>
 
 <div id="bookingContent"></div>
 
 </div>
+</div>
 
+
+<!-- AUTH MODAL -->
+
+<div class="modal" id="authModal">
+<div class="modal-content">
+
+<button class="close" onclick="closeModal('authModal')">✕</button>
+
+<div id="authContent"></div>
+
+</div>
+</div>
+
+
+<!-- REVIEW MODAL -->
+
+<div class="modal" id="reviewModal">
+<div class="modal-content">
+
+<button class="close" onclick="closeModal('reviewModal')">✕</button>
+
+<h2>Оставить отзыв ⭐</h2>
+
+<div id="reviewContent"></div>
+
+</div>
 </div>
 
 
 <div class="toast" id="toast"></div>
 
 
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 
-const salons = [
+/* =========================
+   SUPABASE CONNECTION
+========================= */
 
-{
-id:1,
-name:"Beauty House",
-rating:"4.9",
-reviews:127,
-address:"Ташкент",
-category:"Волосы",
-price:"от 100 000 сум",
-image:"https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80",
-description:"Современный салон красоты с профессиональными мастерами и качественным сервисом.",
-services:[
-["Женская стрижка","100 000 сум"],
-["Окрашивание","250 000 сум"],
-["Укладка","80 000 сум"]
-]
-},
+const SUPABASE_URL =
+"https://khultzywluakiadplgfm.supabase.co";
 
-{
-id:2,
-name:"Luxe Beauty Studio",
-rating:"4.8",
-reviews:94,
-address:"Ташкент",
-category:"Маникюр",
-price:"от 120 000 сум",
-image:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80",
-description:"Премиальный салон красоты. Маникюр, педикюр и профессиональный уход.",
-services:[
-["Маникюр","120 000 сум"],
-["Педикюр","150 000 сум"],
-["Маникюр + покрытие","180 000 сум"]
-]
-},
+const SUPABASE_KEY =
+"sb_publishable_laISq9C5XCc32DhtP6UTpg_k7RW5ikc";
 
-{
-id:3,
-name:"Glamour Studio",
-rating:"4.9",
-reviews:76,
-address:"Ташкент",
-category:"Макияж",
-price:"от 90 000 сум",
-image:"https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=800&q=80",
-description:"Красивые образы для любого события и профессиональные мастера.",
-services:[
-["Дневной макияж","90 000 сум"],
-["Вечерний макияж","180 000 сум"],
-["Свадебный макияж","350 000 сум"]
-]
-},
-
-{
-id:4,
-name:"Lash Room",
-rating:"4.7",
-reviews:58,
-address:"Ташкент",
-category:"Ресницы",
-price:"от 110 000 сум",
-image:"https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80",
-description:"Профессиональное наращивание ресниц и оформление бровей.",
-services:[
-["Наращивание ресниц","150 000 сум"],
-["Ламинирование","120 000 сум"],
-["Оформление бровей","80 000 сум"]
-]
-}
-
-];
+const supabase =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
 
 
-let currentFilter="Все";
+/* =========================
+   GLOBAL DATA
+========================= */
 
-let favorites=
-JSON.parse(localStorage.getItem("beautyFavorites")) || [];
+let salons = [];
+let categories = [];
+let currentFilter = "Все";
+let currentUser = null;
 
-let bookings=
-JSON.parse(localStorage.getItem("beautyBookings")) || [];
-
-let selectedSalon=null;
-
-let selectedService=null;
-
-let selectedDate=null;
-
-let selectedTime=null;
+let selectedSalon = null;
+let selectedService = null;
+let selectedMaster = null;
+let selectedDate = null;
+let selectedTime = null;
 
 
-/* PAGES */
+/* =========================
+   START APP
+========================= */
 
-function showPage(page){
+async function startApp(){
 
-document.querySelectorAll(".page").forEach(p=>{
-p.classList.remove("active");
-});
+const {data:{session}} =
+await supabase.auth.getSession();
 
-document.getElementById(page).classList.add("active");
+currentUser = session?.user || null;
 
-document.querySelectorAll(".nav-item").forEach(n=>{
-n.classList.remove("active");
-});
+await loadCategories();
+await loadSalons();
 
-const activeNav=document.querySelector(`[data-page="${page}"]`);
-
-if(activeNav){
-activeNav.classList.add("active");
-}
-
-if(page==="search"){
+renderCategories();
+renderFilters();
+renderHome();
 renderSearch();
-}
-
-if(page==="favorites"){
-renderFavorites();
-}
-
-if(page==="bookings"){
-renderBookings();
-}
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+renderProfile();
 
 }
 
+startApp();
 
-/* HOME SALONS */
 
-function renderHome(){
+/* =========================
+   LOAD CATEGORIES
+========================= */
 
-const container=
-document.getElementById("homeSalons");
+async function loadCategories(){
 
-container.innerHTML=salons.slice(0,3).map(salonCard).join("");
+const {data,error} =
+await supabase
+.from("categories")
+.select("*")
+.order("id");
 
+if(error){
+console.error(error);
+return;
 }
 
-
-/* SALON CARD */
-
-function salonCard(salon){
-
-const isFavorite=favorites.includes(salon.id);
-
-return `
-
-<div class="salon-card" onclick="openSalon(${salon.id})">
-
-<button
-class="favorite"
-onclick="event.stopPropagation();toggleFavorite(${salon.id})"
->
-${isFavorite ? "❤️" : "🤍"}
-</button>
-
-<div
-class="salon-image"
-style="background-image:url('${salon.image}')">
-</div>
-
-<div class="salon-info">
-
-<h3>${salon.name}</h3>
-
-<div class="rating">
-⭐ ${salon.rating} (${salon.reviews} отзывов)
-</div>
-
-<div class="address">
-📍 ${salon.address}
-</div>
-
-<div class="price">
-${salon.price}
-</div>
-
-</div>
-
-</div>
-
-`;
+categories = data || [];
 
 }
 
 
-/* FAVORITES */
+/* =========================
+   LOAD SALONS
+========================= */
 
-function toggleFavorite(id){
+async function loadSalons(){
 
-if(favorites.includes(id)){
+const {data,error} =
+await supabase
+.from("salons")
+.select(`
+id,
+name,
+description,
+address,
+city,
+phone,
+image_url,
+salon_categories(
+categories(
+id,
+name,
+icon
+)
+)
+`)
+.order("id");
 
-favorites=favorites.filter(x=>x!==id);
+if(error){
+console.error(error);
+showToast("Ошибка загрузки салонов");
+return;
+}
 
-showToast("Удалено из избранного");
+salons = data || [];
+
+for(const salon of salons){
+
+const {data:servicesData} =
+await supabase
+.from("services")
+.select("*")
+.eq("salon_id",salon.id);
+
+salon.services = servicesData || [];
+
+const {data:reviewsData} =
+await supabase
+.from("reviews")
+.select("rating")
+.eq("salon_id",salon.id);
+
+salon.reviews =
+reviewsData?.length || 0;
+
+if(reviewsData?.length){
+
+salon.rating =
+(
+reviewsData.reduce(
+(sum,r)=>sum+r.rating,0
+) / reviewsData.length
+).toFixed(1);
 
 }else{
 
-favorites.push(id);
-
-showToast("Добавлено в избранное ❤️");
+salon.rating = "Новый";
 
 }
 
-localStorage.setItem(
-"beautyFavorites",
-JSON.stringify(favorites)
-);
+salon.categories =
+(salon.salon_categories || [])
+.map(x=>x.categories)
+.filter(Boolean);
 
-renderHome();
-renderSearch();
-renderFavorites();
+}
 
 }
 
 
-function renderFavorites(){
+/* =========================
+   NAVIGATION
+========================= */
 
-const container=
-document.getElementById("favoritesList");
+function showPage(page){
 
-const favoriteSalons=
-salons.filter(s=>favorites.includes(s.id));
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
 
-if(favoriteSalons.length===0){
+document.getElementById(page)
+.classList.add("active");
 
-container.innerHTML=`
+document.querySelectorAll(".nav-item")
+.forEach(n=>n.classList.remove("active"));
 
-<div class="empty">
+const nav =
+document.querySelector(`[data-page="${page}"]`);
 
-<div class="empty-icon">❤️</div>
+if(nav) nav.classList.add("active");
 
-<h3>Здесь пока пусто</h3>
+if(page==="search") renderSearch();
+if(page==="favorites") renderFavorites();
+if(page==="bookings") renderBookings();
+if(page==="profile") renderProfile();
 
-<p>Добавляйте любимые салоны в избранное</p>
+window.scrollTo(0,0);
+
+}
+
+
+/* =========================
+   CATEGORIES
+========================= */
+
+function renderCategories(){
+
+document.getElementById("categories").innerHTML =
+categories.map(category=>`
+
+<div class="category"
+onclick="categorySearch('${category.name}')">
+
+<div class="category-icon">
+${category.icon}
+</div>
+
+<p>${category.name}</p>
 
 </div>
 
-`;
-
-return;
-
-}
-
-container.innerHTML=
-favoriteSalons.map(salonCard).join("");
+`).join("");
 
 }
 
 
-/* SEARCH */
+function renderFilters(){
 
-function goSearch(){
+const container =
+document.getElementById("filters");
 
-const value=
-document.getElementById("homeSearch").value;
+container.innerHTML = `
 
-showPage("search");
+<button class="filter active"
+onclick="setFilter('Все',this)">
+Все
+</button>
 
-document.getElementById("searchInput").value=value;
+` +
 
-renderSearch();
+categories.map(category=>`
+
+<button class="filter"
+onclick="setFilter('${category.name}',this)">
+${category.icon} ${category.name}
+</button>
+
+`).join("");
 
 }
 
@@ -1282,17 +1098,7 @@ function categorySearch(category){
 
 showPage("search");
 
-currentFilter=category;
-
-document.querySelectorAll(".filter").forEach(btn=>{
-
-btn.classList.remove("active");
-
-if(btn.textContent.includes(category)){
-btn.classList.add("active");
-}
-
-});
+currentFilter = category;
 
 renderSearch();
 
@@ -1301,13 +1107,107 @@ renderSearch();
 
 function setFilter(filter,button){
 
-currentFilter=filter;
+currentFilter = filter;
 
-document.querySelectorAll(".filter").forEach(btn=>{
-btn.classList.remove("active");
-});
+document.querySelectorAll(".filter")
+.forEach(x=>x.classList.remove("active"));
 
-button.classList.add("active");
+if(button) button.classList.add("active");
+
+renderSearch();
+
+}
+
+
+/* =========================
+   SALON CARD
+========================= */
+
+function salonCard(salon){
+
+const tags =
+salon.categories
+.slice(0,3)
+.map(c=>`<span class="tag">${c.icon} ${c.name}</span>`)
+.join("");
+
+const price =
+salon.services.length
+? Math.min(...salon.services.map(s=>s.price))
+.toLocaleString("ru-RU") + " сум"
+: "Цены уточняйте";
+
+return `
+
+<div class="salon-card"
+onclick="openSalon(${salon.id})">
+
+<button class="favorite"
+onclick="event.stopPropagation();toggleFavorite(${salon.id})">
+❤️
+</button>
+
+<div class="salon-image"
+style="background-image:url('${salon.image_url || ""}')">
+</div>
+
+<div class="salon-info">
+
+<h3>${salon.name}</h3>
+
+<div class="rating">
+⭐ ${salon.rating}
+(${salon.reviews} отзывов)
+</div>
+
+<div class="address">
+📍 ${salon.address || salon.city || "Ташкент"}
+</div>
+
+<div class="categories-small">
+${tags}
+</div>
+
+<div class="price">
+от ${price}
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+function renderHome(){
+
+document.getElementById("homeSalons").innerHTML =
+salons.slice(0,6)
+.map(salonCard)
+.join("");
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function goSearch(){
+
+const value =
+document.getElementById("homeSearch").value;
+
+showPage("search");
+
+document.getElementById("searchInput").value =
+value;
 
 renderSearch();
 
@@ -1316,39 +1216,44 @@ renderSearch();
 
 function renderSearch(){
 
-const input=
+const input =
 document.getElementById("searchInput");
 
-if(!input)return;
+if(!input) return;
 
-const query=input.value.toLowerCase();
+const query =
+input.value.toLowerCase();
 
-let results=salons.filter(salon=>{
+const results =
+salons.filter(salon=>{
 
-const matchesSearch=
+const text =
+[
+salon.name,
+salon.description,
+...salon.categories.map(c=>c.name),
+...salon.services.map(s=>s.name)
+]
+.join(" ")
+.toLowerCase();
 
-salon.name.toLowerCase().includes(query) ||
+const matchSearch =
+text.includes(query);
 
-salon.category.toLowerCase().includes(query) ||
-
-salon.services.some(service=>
-service[0].toLowerCase().includes(query)
+const matchFilter =
+currentFilter==="Все" ||
+salon.categories.some(
+c=>c.name===currentFilter
 );
 
-const matchesFilter=
-
-currentFilter==="Все" ||
-
-salon.category===currentFilter;
-
-return matchesSearch && matchesFilter;
+return matchSearch && matchFilter;
 
 });
 
-const container=
+const container =
 document.getElementById("searchResults");
 
-if(results.length===0){
+if(!results.length){
 
 container.innerHTML=`
 
@@ -1358,7 +1263,7 @@ container.innerHTML=`
 
 <h3>Ничего не найдено</h3>
 
-<p>Попробуйте изменить поиск</p>
+<p>Попробуйте другой поиск</p>
 
 </div>
 
@@ -1368,26 +1273,111 @@ return;
 
 }
 
-container.innerHTML=
+container.innerHTML =
 results.map(salonCard).join("");
 
 }
 
 
-/* SALON DETAILS */
+/* =========================
+   SALON DETAILS
+========================= */
 
-function openSalon(id){
+async function openSalon(id){
 
-selectedSalon=salons.find(s=>s.id===id);
+selectedSalon =
+salons.find(s=>s.id===id);
 
-const details=
-document.getElementById("salonDetails");
+const {data:masters} =
+await supabase
+.from("masters")
+.select("*")
+.eq("salon_id",id);
 
-details.innerHTML=`
+const {data:reviews} =
+await supabase
+.from("reviews")
+.select(`
+rating,
+comment,
+created_at,
+profiles(full_name)
+`)
+.eq("salon_id",id)
+.order("created_at",{ascending:false});
 
-<div
-class="modal-image"
-style="background-image:url('${selectedSalon.image}')">
+const servicesHtml =
+selectedSalon.services.map(service=>`
+
+<div class="service">
+
+<div>
+<strong>${service.name}</strong>
+<br>
+<small>${service.duration || 60} минут</small>
+</div>
+
+<strong>
+${Number(service.price).toLocaleString("ru-RU")} сум
+</strong>
+
+</div>
+
+`).join("") || "<p>Услуги пока не добавлены</p>";
+
+
+const mastersHtml =
+(masters || []).map(master=>`
+
+<div class="master-item">
+
+<div class="master-photo"
+style="background-image:url('${master.photo_url || ""}')">
+</div>
+
+<div>
+
+<strong>${master.full_name}</strong>
+
+<br>
+
+<small>
+${master.specialization || ""}
+</small>
+
+</div>
+
+</div>
+
+`).join("") || "<p>Мастера пока не добавлены</p>";
+
+
+const reviewsHtml =
+(reviews || []).map(review=>`
+
+<div class="review">
+
+<strong>
+⭐ ${review.rating}/5
+</strong>
+
+<p>
+${review.comment || ""}
+</p>
+
+<small>
+${review.profiles?.full_name || "Пользователь"}
+</small>
+
+</div>
+
+`).join("") || "<p>Отзывов пока нет. Будьте первым!</p>";
+
+
+document.getElementById("salonDetails").innerHTML = `
+
+<div class="modal-image"
+style="background-image:url('${selectedSalon.image_url || ""}')">
 </div>
 
 <h2>${selectedSalon.name}</h2>
@@ -1397,73 +1387,201 @@ style="background-image:url('${selectedSalon.image}')">
 (${selectedSalon.reviews} отзывов)
 </div>
 
-<p class="modal-text">
-
-📍 ${selectedSalon.address}
-
+<p style="color:#777;line-height:1.6">
+📍 ${selectedSalon.address || ""}
 <br><br>
-
-${selectedSalon.description}
-
+${selectedSalon.description || ""}
 </p>
 
-<div class="service-list">
+<h3 style="margin-top:25px">
+💇 Услуги
+</h3>
 
-<h3>Услуги и цены</h3>
+${servicesHtml}
 
-${selectedSalon.services.map(service=>`
+<h3 style="margin-top:25px">
+👩‍🎨 Мастера
+</h3>
 
-<div class="service">
+${mastersHtml}
 
-<span>${service[0]}</span>
-
-<strong>${service[1]}</strong>
-
-</div>
-
-`).join("")}
-
-</div>
-
-<button
-class="book-button"
-onclick="openBooking()"
->
+<button class="main-btn"
+onclick="openBooking()">
 Записаться онлайн 📅
 </button>
 
+<button class="main-btn"
+style="background:#fff0f5;color:#e85d8c"
+onclick="openReview()">
+Оставить отзыв ⭐
+</button>
+
+<h3 style="margin-top:25px">
+💬 Отзывы
+</h3>
+
+${reviewsHtml}
+
 `;
 
-document
-.getElementById("salonModal")
+document.getElementById("salonModal")
 .classList.add("active");
 
 }
 
 
-function closeSalon(){
+/* =========================
+   FAVORITES
+========================= */
 
-document
-.getElementById("salonModal")
-.classList.remove("active");
+async function toggleFavorite(salonId){
+
+if(!currentUser){
+
+showToast("Сначала войдите в аккаунт");
+
+openAuth();
+
+return;
+
+}
+
+const {data:existing} =
+await supabase
+.from("favorites")
+.select("id")
+.eq("client_id",currentUser.id)
+.eq("salon_id",salonId);
+
+if(existing && existing.length){
+
+await supabase
+.from("favorites")
+.delete()
+.eq("id",existing[0].id);
+
+showToast("Удалено из избранного");
+
+}else{
+
+const {error} =
+await supabase
+.from("favorites")
+.insert({
+client_id:currentUser.id,
+salon_id:salonId
+});
+
+if(error){
+showToast("Ошибка");
+console.error(error);
+return;
+}
+
+showToast("Добавлено в избранное ❤️");
+
+}
 
 }
 
 
-/* BOOKING */
+async function renderFavorites(){
+
+const container =
+document.getElementById("favoritesList");
+
+if(!currentUser){
+
+container.innerHTML=`
+
+<div class="empty">
+
+<div class="empty-icon">🔐</div>
+
+<h3>Войдите в аккаунт</h3>
+
+<p>Чтобы сохранять любимые салоны</p>
+
+<button class="main-btn"
+onclick="openAuth()">
+Войти
+</button>
+
+</div>
+
+`;
+
+return;
+
+}
+
+const {data,error} =
+await supabase
+.from("favorites")
+.select("salon_id")
+.eq("client_id",currentUser.id);
+
+if(error){
+console.error(error);
+return;
+}
+
+const ids =
+(data || []).map(x=>x.salon_id);
+
+const favoriteSalons =
+salons.filter(s=>ids.includes(s.id));
+
+if(!favoriteSalons.length){
+
+container.innerHTML=`
+
+<div class="empty">
+
+<div class="empty-icon">❤️</div>
+
+<h3>Здесь пока пусто</h3>
+
+<p>Добавляйте любимые салоны</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+container.innerHTML =
+favoriteSalons.map(salonCard).join("");
+
+}
+
+
+/* =========================
+   BOOKING
+========================= */
 
 function openBooking(){
 
-closeSalon();
+if(!currentUser){
 
-selectedService=null;
+showToast("Для записи нужно войти");
 
-selectedDate=null;
+openAuth();
 
-selectedTime=null;
+return;
 
-document
-.getElementById("bookingModal")
+}
+
+closeModal("salonModal");
+
+selectedService = null;
+selectedMaster = null;
+selectedDate = null;
+selectedTime = null;
+
+document.getElementById("bookingModal")
 .classList.add("active");
 
 renderBooking();
@@ -1471,91 +1589,112 @@ renderBooking();
 }
 
 
-function renderBooking(){
+async function renderBooking(){
 
-const content=
-document.getElementById("bookingContent");
+const {data:masters} =
+await supabase
+.from("masters")
+.select("*")
+.eq("salon_id",selectedSalon.id);
 
-content.innerHTML=`
+document.getElementById("bookingContent").innerHTML = `
 
-<div class="booking-step">
+<h3 style="margin-top:20px">
+1. Выберите услугу
+</h3>
 
-<h3>1. Выберите услугу</h3>
+${selectedSalon.services.map(service=>`
 
-${selectedSalon.services.map((service,index)=>`
+<div class="booking-option
+${selectedService?.id===service.id ? "selected":""}"
 
-<div
-class="booking-option ${selectedService===index ? "selected":""}"
-onclick="selectService(${index})"
->
+onclick="selectService(${service.id})">
 
-${service[0]}
+<strong>${service.name}</strong>
 
-<strong style="float:right">
-${service[1]}
-</strong>
+<span style="float:right">
+${Number(service.price).toLocaleString("ru-RU")} сум
+</span>
 
 </div>
+
+`).join("")}
+
+
+<h3 style="margin-top:25px">
+2. Выберите мастера
+</h3>
+
+${(masters || []).map(master=>`
+
+<div class="booking-option
+${selectedMaster?.id===master.id ? "selected":""}"
+
+onclick="selectMaster(${master.id})">
+
+${master.full_name}
+
+<br>
+
+<small>
+${master.specialization || ""}
+</small>
+
+</div>
+
+`).join("")}
+
+
+<h3 style="margin-top:25px">
+3. Выберите день
+</h3>
+
+<div class="options-row">
+
+${getDates().map(date=>`
+
+<button class="option-btn
+${selectedDate===date.value?"selected":""}"
+
+onclick="selectDate('${date.value}')">
+
+${date.label}
+
+</button>
 
 `).join("")}
 
 </div>
 
 
-<div class="booking-step">
+<h3 style="margin-top:25px">
+4. Выберите время
+</h3>
 
-<h3>2. Выберите дату</h3>
+<div class="options-row">
 
-<div class="date-row">
-
-<button class="date-btn ${selectedDate==='Сегодня'?'selected':''}"
-onclick="selectDate('Сегодня')">
-Сегодня
-</button>
-
-<button class="date-btn ${selectedDate==='Завтра'?'selected':''}"
-onclick="selectDate('Завтра')">
-Завтра
-</button>
-
-<button class="date-btn ${selectedDate==='Понедельник'?'selected':''}"
-onclick="selectDate('Понедельник')">
-Понедельник
-</button>
-
-</div>
-
-</div>
-
-
-<div class="booking-step">
-
-<h3>3. Выберите время</h3>
-
-<div class="time-row">
-
-${["10:00","11:00","12:00","14:00","16:00","18:00"]
+${["10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00"]
 .map(time=>`
 
-<button
-class="time-btn ${selectedTime===time?'selected':''}"
-onclick="selectTime('${time}')"
->
+<button class="option-btn
+${selectedTime===time?"selected":""}"
+
+onclick="selectTime('${time}')">
+
 ${time}
+
 </button>
 
 `).join("")}
 
 </div>
 
-</div>
 
+<button class="main-btn"
+onclick="confirmBooking()">
 
-<button
-class="book-button"
-onclick="confirmBooking()"
->
 Подтвердить запись ✨
+
 </button>
 
 `;
@@ -1563,9 +1702,26 @@ onclick="confirmBooking()"
 }
 
 
-function selectService(index){
+function selectService(id){
 
-selectedService=index;
+selectedService =
+selectedSalon.services.find(x=>x.id===id);
+
+renderBooking();
+
+}
+
+
+async function selectMaster(id){
+
+const {data} =
+await supabase
+.from("masters")
+.select("*")
+.eq("id",id)
+.single();
+
+selectedMaster = data;
 
 renderBooking();
 
@@ -1590,75 +1746,152 @@ renderBooking();
 }
 
 
-function confirmBooking(){
+function getDates(){
 
-if(
-selectedService===null ||
+const result=[];
+
+for(let i=0;i<5;i++){
+
+const date = new Date();
+
+date.setDate(date.getDate()+i);
+
+const value =
+date.toISOString().split("T")[0];
+
+const label =
+i===0
+? "Сегодня"
+: i===1
+? "Завтра"
+: date.toLocaleDateString(
+"ru-RU",
+{day:"numeric",month:"short"}
+);
+
+result.push({value,label});
+
+}
+
+return result;
+
+}
+
+
+async function confirmBooking(){
+
+if(!selectedService ||
+!selectedMaster ||
 !selectedDate ||
-!selectedTime
-){
+!selectedTime){
 
-showToast("Выберите услугу, дату и время");
+showToast("Заполните все пункты");
 
 return;
 
 }
 
-const booking={
+const {error} =
+await supabase
+.from("bookings")
+.insert({
 
-id:Date.now(),
+client_id:currentUser.id,
 
-salon:selectedSalon.name,
+salon_id:selectedSalon.id,
 
-service:selectedSalon.services[selectedService][0],
+master_id:selectedMaster.id,
 
-price:selectedSalon.services[selectedService][1],
+service_id:selectedService.id,
 
-date:selectedDate,
+booking_date:selectedDate,
 
-time:selectedTime
+booking_time:selectedTime,
 
-};
+status:"confirmed"
 
-bookings.push(booking);
+});
 
-localStorage.setItem(
-"beautyBookings",
-JSON.stringify(bookings)
-);
+if(error){
 
-closeBooking();
+console.error(error);
 
-showToast("Запись успешно создана! 🎉");
+showToast("Ошибка создания записи");
 
-renderBookings();
+return;
 
-setTimeout(()=>{
+}
+
+closeModal("bookingModal");
+
+showToast("Вы успешно записались! 🎉");
 
 showPage("bookings");
 
-},700);
-
 }
 
 
-function closeBooking(){
+/* =========================
+   BOOKINGS LIST
+========================= */
 
-document
-.getElementById("bookingModal")
-.classList.remove("active");
+async function renderBookings(){
 
-}
-
-
-/* BOOKINGS */
-
-function renderBookings(){
-
-const container=
+const container =
 document.getElementById("bookingsList");
 
-if(bookings.length===0){
+if(!currentUser){
+
+container.innerHTML=`
+
+<div class="empty">
+
+<div class="empty-icon">🔐</div>
+
+<h3>Войдите в аккаунт</h3>
+
+<p>Чтобы видеть свои записи</p>
+
+<button class="main-btn"
+onclick="openAuth()">
+Войти
+</button>
+
+</div>
+
+`;
+
+return;
+
+}
+
+const {data,error} =
+await supabase
+.from("bookings")
+.select(`
+id,
+booking_date,
+booking_time,
+status,
+salons(name),
+masters(full_name),
+services(name,price)
+`)
+.eq("client_id",currentUser.id)
+.order("booking_date",{ascending:false});
+
+if(error){
+
+console.error(error);
+
+container.innerHTML =
+"<p>Ошибка загрузки записей</p>";
+
+return;
+
+}
+
+if(!data?.length){
 
 container.innerHTML=`
 
@@ -1670,12 +1903,394 @@ container.innerHTML=`
 
 <p>Найдите салон и запишитесь онлайн</p>
 
-<button
-class="book-button"
-onclick="showPage('search')"
-style="max-width:300px"
->
-Найти салон
+</div>
+
+`;
+
+return;
+
+}
+
+container.innerHTML =
+data.map(booking=>`
+
+<div class="booking-card">
+
+<h3>
+${booking.salons?.name || "Салон"}
+</h3>
+
+<p>
+✨ ${booking.services?.name || ""}
+</p>
+
+<p>
+👩‍🎨 ${booking.masters?.full_name || ""}
+</p>
+
+<p style="margin-top:8px">
+📅 ${booking.booking_date}
+</p>
+
+<p>
+🕐 ${booking.booking_time}
+</p>
+
+<p style="color:#e85d8c;font-weight:bold;margin-top:8px">
+
+${Number(booking.services?.price || 0)
+.toLocaleString("ru-RU")} сум
+
+</p>
+
+<div class="booking-status">
+
+✓ Подтверждено
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* =========================
+   REVIEWS
+========================= */
+
+function openReview(){
+
+if(!currentUser){
+
+showToast("Сначала войдите");
+
+openAuth();
+
+return;
+
+}
+
+document.getElementById("reviewModal")
+.classList.add("active");
+
+document.getElementById("reviewContent").innerHTML=`
+
+<label class="form-label">
+Оценка
+</label>
+
+<div class="options-row">
+
+${[1,2,3,4,5].map(x=>`
+
+<button class="option-btn"
+onclick="selectRating(${x},this)">
+
+⭐ ${x}
+
+</button>
+
+`).join("")}
+
+</div>
+
+<label class="form-label">
+Ваш отзыв
+</label>
+
+<textarea id="reviewText"
+class="form-input"
+rows="5"
+placeholder="Расскажите о вашем посещении...">
+</textarea>
+
+<button class="main-btn"
+onclick="sendReview()">
+Опубликовать отзыв
+</button>
+
+`;
+
+window.selectedRating=null;
+
+}
+
+
+function selectRating(rating,button){
+
+window.selectedRating=rating;
+
+document.querySelectorAll(
+"#reviewContent .option-btn"
+).forEach(x=>x.classList.remove("selected"));
+
+button.classList.add("selected");
+
+}
+
+
+async function sendReview(){
+
+if(!window.selectedRating){
+
+showToast("Выберите оценку");
+
+return;
+
+}
+
+const comment =
+document.getElementById("reviewText").value;
+
+const {error} =
+await supabase
+.from("reviews")
+.insert({
+
+client_id:currentUser.id,
+
+salon_id:selectedSalon.id,
+
+rating:window.selectedRating,
+
+comment
+
+});
+
+if(error){
+
+console.error(error);
+
+showToast("Ошибка отправки отзыва");
+
+return;
+
+}
+
+closeModal("reviewModal");
+
+showToast("Спасибо за отзыв! ⭐");
+
+await loadSalons();
+
+renderHome();
+renderSearch();
+
+openSalon(selectedSalon.id);
+
+}
+
+
+/* =========================
+   AUTH
+========================= */
+
+function openAuth(mode="login"){
+
+document.getElementById("authModal")
+.classList.add("active");
+
+renderAuth(mode);
+
+}
+
+
+function renderAuth(mode){
+
+const register = mode==="register";
+
+document.getElementById("authContent").innerHTML=`
+
+<h2>
+${register ? "Создать аккаунт" : "Вход"}
+</h2>
+
+${register ? `
+
+<label class="form-label">
+Ваше имя
+</label>
+
+<input id="authName"
+class="form-input"
+placeholder="Ваше имя">
+
+` : ""}
+
+
+<label class="form-label">
+Email
+</label>
+
+<input id="authEmail"
+class="form-input"
+type="email"
+placeholder="example@email.com">
+
+
+<label class="form-label">
+Пароль
+</label>
+
+<input id="authPassword"
+class="form-input"
+type="password"
+placeholder="Минимум 6 символов">
+
+
+<button class="main-btn"
+onclick="${register ? "registerUser()" : "loginUser()"}">
+
+${register ? "Зарегистрироваться" : "Войти"}
+
+</button>
+
+
+<div class="auth-switch">
+
+${register
+? `Уже есть аккаунт?
+<span onclick="renderAuth('login')">
+Войти
+</span>`
+: `Нет аккаунта?
+<span onclick="renderAuth('register')">
+Регистрация
+</span>`
+}
+
+</div>
+
+`;
+
+}
+
+
+async function registerUser(){
+
+const name =
+document.getElementById("authName").value;
+
+const email =
+document.getElementById("authEmail").value;
+
+const password =
+document.getElementById("authPassword").value;
+
+if(!name || !email || !password){
+
+showToast("Заполните все поля");
+
+return;
+
+}
+
+const {data,error} =
+await supabase.auth.signUp({
+
+email,
+password,
+
+options:{
+data:{
+full_name:name
+}
+}
+
+});
+
+if(error){
+
+showToast(error.message);
+
+return;
+
+}
+
+showToast(
+"Регистрация успешна! Проверьте email."
+);
+
+if(data.session){
+
+currentUser=data.user;
+
+closeModal("authModal");
+
+renderProfile();
+
+}
+
+}
+
+
+async function loginUser(){
+
+const email =
+document.getElementById("authEmail").value;
+
+const password =
+document.getElementById("authPassword").value;
+
+const {data,error} =
+await supabase.auth.signInWithPassword({
+
+email,
+password
+
+});
+
+if(error){
+
+showToast("Неверный email или пароль");
+
+return;
+
+}
+
+currentUser=data.user;
+
+closeModal("authModal");
+
+showToast("Добро пожаловать! ✨");
+
+renderProfile();
+
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+async function renderProfile(){
+
+const container =
+document.getElementById("profileContent");
+
+if(!currentUser){
+
+container.innerHTML=`
+
+<div class="profile-card">
+
+<div class="profile-avatar">
+👤
+</div>
+
+<h2>Гость</h2>
+
+<p>
+Войдите, чтобы бронировать услуги
+</p>
+
+<button class="main-btn"
+onclick="openAuth()">
+
+Войти / Регистрация
+
 </button>
 
 </div>
@@ -1686,90 +2301,139 @@ return;
 
 }
 
-container.innerHTML=
-bookings.slice().reverse().map(booking=>`
+const {data:profile} =
+await supabase
+.from("profiles")
+.select("*")
+.eq("id",currentUser.id)
+.single();
 
-<div class="booking-card">
+container.innerHTML=`
 
-<h3>${booking.salon}</h3>
+<div class="profile-card">
 
-<p>✨ ${booking.service}</p>
+<div class="profile-avatar">
+👤
+</div>
 
-<p style="margin-top:8px">
-📅 ${booking.date}
+<h2>
+${profile?.full_name || currentUser.email}
+</h2>
+
+<p>
+${currentUser.email}
 </p>
 
-<p style="margin-top:5px">
-🕐 ${booking.time}
-</p>
+<button class="main-btn"
+onclick="logoutUser()">
 
-<p style="margin-top:8px;color:#e85d8c;font-weight:bold">
-${booking.price}
-</p>
+Выйти
 
-<div class="booking-status">
-✓ Запись подтверждена
+</button>
+
+</div>
+
+
+<div class="profile-menu">
+
+<div class="profile-item"
+onclick="showPage('bookings')">
+
+<span>📅 Мои записи</span>
+
+<span>›</span>
+
+</div>
+
+<div class="profile-item"
+onclick="showPage('favorites')">
+
+<span>❤️ Избранное</span>
+
+<span>›</span>
+
+</div>
+
+<div class="profile-item">
+
+<span>🔔 Уведомления</span>
+
+<span>›</span>
+
 </div>
 
 </div>
 
-`).join("");
+`;
 
 }
 
 
-/* TOAST */
+async function logoutUser(){
 
-function showToast(message){
+await supabase.auth.signOut();
 
-const toast=
+currentUser=null;
+
+showToast("Вы вышли из аккаунта");
+
+renderProfile();
+
+showPage("home");
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+function closeModal(id){
+
+document.getElementById(id)
+.classList.remove("active");
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(text){
+
+const toast =
 document.getElementById("toast");
 
-toast.textContent=message;
+toast.textContent=text;
 
 toast.style.display="block";
 
 setTimeout(()=>{
-
 toast.style.display="none";
-
-},2500);
-
-}
-
-
-/* CLOSE MODAL */
-
-window.onclick=function(event){
-
-const salonModal=
-document.getElementById("salonModal");
-
-const bookingModal=
-document.getElementById("bookingModal");
-
-if(event.target===salonModal){
-closeSalon();
-}
-
-if(event.target===bookingModal){
-closeBooking();
-}
+},3000);
 
 }
 
 
-/* START */
+/* CLOSE OUTSIDE */
 
-renderHome();
+window.addEventListener("click",event=>{
 
-renderSearch();
+document.querySelectorAll(".modal")
+.forEach(modal=>{
 
-renderFavorites();
+if(event.target===modal){
 
-renderBookings();
+modal.classList.remove("active");
+
+}
+
+});
+
+});
 
 </script>
 
 </body>
-  </html>
+</html>
