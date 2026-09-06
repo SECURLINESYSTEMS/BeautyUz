@@ -1,1 +1,552 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>BeautyUz — Найди своего мастера</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --pink: #e85d8c;
+      --dark: #1d1b20;
+      --gray: #777;
+      --light: #f8f6f7;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      padding-bottom: 80px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 18px;
+    }
+
+    /* HEADER */
+
+    header {
+      background: var(--white);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #eee;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--pink);
+    }
+
+    .location {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 30px 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      color: var(--gray);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    /* SEARCH */
+
+    .search-box {
+      background: white;
+      margin-top: 22px;
+      padding: 8px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      flex: 1;
+      padding: 14px;
+      font-size: 15px;
+      background: transparent;
+    }
+
+    .search-btn {
+      border: none;
+      background: var(--pink);
+      color: white;
+      padding: 14px 18px;
+      border-radius: 14px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* SECTIONS */
+
+    section {
+      margin-top: 32px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .section-title h2 {
+      font-size: 21px;
+    }
+
+    .section-title span {
+      color: var(--pink);
+      font-size: 14px;
+    }
+
+    /* CATEGORIES */
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .category {
+      background: white;
+      border-radius: 18px;
+      padding: 16px 8px;
+      text-align: center;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.04);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .category:hover {
+      transform: translateY(-3px);
+    }
+
+    .category-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .category p {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* SALONS */
+
+    .salons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .salon-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .salon-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .salon-image {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .salon-info {
+      padding: 16px;
+    }
+
+    .salon-info h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .rating {
+      color: #f5a623;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .address {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    .price {
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      color: var(--pink);
+    }
+
+    /* MASTERS */
+
+    .masters {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .master {
+      background: white;
+      padding: 18px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    }
+
+    .avatar {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      margin: auto;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 12px;
+    }
+
+    .master h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .master p {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    .master-rating {
+      margin-top: 8px;
+      color: #f5a623;
+      font-size: 14px;
+    }
+
+    /* BOTTOM NAVIGATION */
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      border-top: 1px solid #eee;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      z-index: 1000;
+    }
+
+    .nav-item {
+      text-align: center;
+      font-size: 12px;
+      color: var(--gray);
+      cursor: pointer;
+    }
+
+    .nav-item.active {
+      color: var(--pink);
+      font-weight: bold;
+    }
+
+    .nav-icon {
+      font-size: 22px;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      .hero h1 {
+        font-size: 26px;
+      }
+
+      .categories {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+
+      .category {
+        padding: 12px 5px;
+      }
+
+      .category-icon {
+        font-size: 24px;
+      }
+
+      .salons {
+        display: flex;
+        overflow-x: auto;
+        gap: 14px;
+        padding-bottom: 10px;
+      }
+
+      .salon-card {
+        min-width: 260px;
+      }
+
+      .masters {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container header-content">
+    <div class="logo">BeautyUz ✨</div>
+    <div class="location">📍 Ташкент</div>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="hero">
+    <h1>Найди своего идеального мастера ✨</h1>
+    <p>Лучшие салоны красоты и мастера рядом с вами</p>
+
+    <div class="search-box">
+      <input type="text" placeholder="Поиск салона, услуги или мастера...">
+      <button class="search-btn">🔍</button>
+    </div>
+  </div>
+
+
+  <section>
+
+    <div class="section-title">
+      <h2>Популярные услуги</h2>
+      <span>Все →</span>
+    </div>
+
+    <div class="categories">
+
+      <div class="category">
+        <div class="category-icon">💇‍♀️</div>
+        <p>Волосы</p>
+      </div>
+
+      <div class="category">
+        <div class="category-icon">💅</div>
+        <p>Маникюр</p>
+      </div>
+
+      <div class="category">
+        <div class="category-icon">👁️</div>
+        <p>Ресницы</p>
+      </div>
+
+      <div class="category">
+        <div class="category-icon">💄</div>
+        <p>Макияж</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section>
+
+    <div class="section-title">
+      <h2>⭐ Лучшие салоны</h2>
+      <span>Все →</span>
+    </div>
+
+    <div class="salons">
+
+      <div class="salon-card">
+
+        <div class="salon-image"
+        style="background-image:url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80');"></div>
+
+        <div class="salon-info">
+
+          <h3>Beauty House</h3>
+
+          <div class="rating">⭐ 4.9 (127 отзывов)</div>
+
+          <div class="address">📍 Ташкент</div>
+
+          <div class="price">от 100 000 сум</div>
+
+        </div>
+
+      </div>
+
+
+      <div class="salon-card">
+
+        <div class="salon-image"
+        style="background-image:url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80');"></div>
+
+        <div class="salon-info">
+
+          <h3>Luxe Beauty Studio</h3>
+
+          <div class="rating">⭐ 4.8 (94 отзыва)</div>
+
+          <div class="address">📍 Ташкент</div>
+
+          <div class="price">от 120 000 сум</div>
+
+        </div>
+
+      </div>
+
+
+      <div class="salon-card">
+
+        <div class="salon-image"
+        style="background-image:url('https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=800&q=80');"></div>
+
+        <div class="salon-info">
+
+          <h3>Glamour Studio</h3>
+
+          <div class="rating">⭐ 4.9 (76 отзывов)</div>
+
+          <div class="address">📍 Ташкент</div>
+
+          <div class="price">от 90 000 сум</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section>
+
+    <div class="section-title">
+      <h2>🔥 Популярные мастера</h2>
+      <span>Все →</span>
+    </div>
+
+    <div class="masters">
+
+      <div class="master">
+
+        <div class="avatar"
+        style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80');"></div>
+
+        <h3>Малика</h3>
+
+        <p>💅 Nail Master</p>
+
+        <div class="master-rating">⭐ 4.9</div>
+
+      </div>
+
+
+      <div class="master">
+
+        <div class="avatar"
+        style="background-image:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80');"></div>
+
+        <h3>Сабина</h3>
+
+        <p>💇 Hair Stylist</p>
+
+        <div class="master-rating">⭐ 4.8</div>
+
+      </div>
+
+
+      <div class="master">
+
+        <div class="avatar"
+        style="background-image:url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80');"></div>
+
+        <h3>Дина</h3>
+
+        <p>👁️ Lash Master</p>
+
+        <div class="master-rating">⭐ 4.9</div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<nav class="bottom-nav">
+
+  <div class="nav-item active">
+    <span class="nav-icon">🏠</span>
+    Главная
+  </div>
+
+  <div class="nav-item">
+    <span class="nav-icon">🔍</span>
+    Поиск
+  </div>
+
+  <div class="nav-item">
+    <span class="nav-icon">📅</span>
+    Записи
+  </div>
+
+  <div class="nav-item">
+    <span class="nav-icon">❤️</span>
+    Избранное
+  </div>
+
+  <div class="nav-item">
+    <span class="nav-icon">👤</span>
+    Профиль
+  </div>
+
+</nav>
+
+</body>
+</html>
