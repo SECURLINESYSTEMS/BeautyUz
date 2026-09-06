@@ -1,552 +1,1775 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>BeautyUz — Найди своего мастера</title>
+<title>BeautyUz — Найди своего мастера</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
 
-    :root {
-      --pink: #e85d8c;
-      --dark: #1d1b20;
-      --gray: #777;
-      --light: #f8f6f7;
-      --white: #ffffff;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      background: var(--light);
-      color: var(--dark);
-      padding-bottom: 80px;
-    }
+:root{
+  --primary:#e85d8c;
+  --primary-dark:#d94778;
+  --dark:#24212a;
+  --gray:#777;
+  --light:#faf7f8;
+  --white:#ffffff;
+  --border:#eeeeee;
+  --shadow:0 8px 30px rgba(0,0,0,.08);
+}
 
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 18px;
-    }
+body{
+  font-family:Arial,sans-serif;
+  background:var(--light);
+  color:var(--dark);
+  padding-bottom:90px;
+}
 
-    /* HEADER */
+button,input{
+  font-family:inherit;
+}
 
-    header {
-      background: var(--white);
-      padding: 16px 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid #eee;
-    }
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:0 18px;
+}
 
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+/* HEADER */
 
-    .logo {
-      font-size: 26px;
-      font-weight: 800;
-      color: var(--pink);
-    }
+header{
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:100;
+  border-bottom:1px solid var(--border);
+}
 
-    .location {
-      font-size: 14px;
-      color: var(--gray);
-    }
+.header-content{
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
 
-    /* HERO */
+.logo{
+  font-size:26px;
+  font-weight:800;
+  color:var(--primary);
+  cursor:pointer;
+}
 
-    .hero {
-      padding: 30px 0 20px;
-    }
+.city{
+  background:#fff3f7;
+  color:var(--primary);
+  padding:9px 13px;
+  border-radius:20px;
+  font-size:14px;
+}
 
-    .hero h1 {
-      font-size: 30px;
-      margin-bottom: 8px;
-    }
+/* PAGES */
 
-    .hero p {
-      color: var(--gray);
-      font-size: 16px;
-      line-height: 1.5;
-    }
+.page{
+  display:none;
+  animation:fade .25s ease;
+}
 
-    /* SEARCH */
+.page.active{
+  display:block;
+}
 
-    .search-box {
-      background: white;
-      margin-top: 22px;
-      padding: 8px;
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-    }
+@keyframes fade{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
 
-    .search-box input {
-      border: none;
-      outline: none;
-      flex: 1;
-      padding: 14px;
-      font-size: 15px;
-      background: transparent;
-    }
+/* HERO */
 
-    .search-btn {
-      border: none;
-      background: var(--pink);
-      color: white;
-      padding: 14px 18px;
-      border-radius: 14px;
-      font-size: 16px;
-      cursor: pointer;
-    }
+.hero{
+  padding:30px 0 15px;
+}
 
-    /* SECTIONS */
+.hero h1{
+  font-size:32px;
+  margin-bottom:10px;
+}
 
-    section {
-      margin-top: 32px;
-    }
+.hero p{
+  color:var(--gray);
+  line-height:1.5;
+}
 
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
+.search-box{
+  margin-top:22px;
+  background:white;
+  border-radius:18px;
+  padding:7px;
+  display:flex;
+  box-shadow:var(--shadow);
+}
 
-    .section-title h2 {
-      font-size: 21px;
-    }
+.search-box input{
+  border:none;
+  outline:none;
+  flex:1;
+  padding:14px;
+  font-size:15px;
+}
 
-    .section-title span {
-      color: var(--pink);
-      font-size: 14px;
-    }
+.search-btn{
+  border:none;
+  background:var(--primary);
+  color:white;
+  border-radius:14px;
+  padding:0 20px;
+  font-size:17px;
+  cursor:pointer;
+}
 
-    /* CATEGORIES */
+/* SECTIONS */
 
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
+.section{
+  margin-top:32px;
+}
 
-    .category {
-      background: white;
-      border-radius: 18px;
-      padding: 16px 8px;
-      text-align: center;
-      box-shadow: 0 5px 18px rgba(0,0,0,0.04);
-      cursor: pointer;
-      transition: 0.2s;
-    }
+.section-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+}
 
-    .category:hover {
-      transform: translateY(-3px);
-    }
+.section-header h2{
+  font-size:21px;
+}
 
-    .category-icon {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
+.link-btn{
+  border:none;
+  background:none;
+  color:var(--primary);
+  font-size:14px;
+  cursor:pointer;
+}
 
-    .category p {
-      font-size: 12px;
-      font-weight: 600;
-    }
+/* CATEGORIES */
 
-    /* SALONS */
+.categories{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
 
-    .salons {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
+.category{
+  background:white;
+  border-radius:18px;
+  padding:16px 8px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 5px 20px rgba(0,0,0,.04);
+  transition:.2s;
+}
 
-    .salon-card {
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-      cursor: pointer;
-      transition: 0.2s;
-    }
+.category:hover{
+  transform:translateY(-4px);
+}
 
-    .salon-card:hover {
-      transform: translateY(-4px);
-    }
+.category-icon{
+  font-size:28px;
+  margin-bottom:8px;
+}
 
-    .salon-image {
-      height: 180px;
-      background-size: cover;
-      background-position: center;
-    }
+.category p{
+  font-size:12px;
+  font-weight:bold;
+}
 
-    .salon-info {
-      padding: 16px;
-    }
+/* SALONS */
 
-    .salon-info h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
+.salons-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
 
-    .rating {
-      color: #f5a623;
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
+.salon-card{
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+  transition:.2s;
+  position:relative;
+}
 
-    .address {
-      font-size: 13px;
-      color: var(--gray);
-    }
+.salon-card:hover{
+  transform:translateY(-5px);
+}
 
-    .price {
-      margin-top: 10px;
-      font-size: 14px;
-      font-weight: bold;
-      color: var(--pink);
-    }
+.salon-image{
+  height:180px;
+  background-size:cover;
+  background-position:center;
+}
 
-    /* MASTERS */
+.salon-info{
+  padding:16px;
+}
 
-    .masters {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
+.salon-info h3{
+  font-size:18px;
+  margin-bottom:8px;
+}
 
-    .master {
-      background: white;
-      padding: 18px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-    }
+.rating{
+  color:#f5a623;
+  font-size:14px;
+  margin-bottom:7px;
+}
 
-    .avatar {
-      width: 75px;
-      height: 75px;
-      border-radius: 50%;
-      margin: auto;
-      background-size: cover;
-      background-position: center;
-      margin-bottom: 12px;
-    }
+.address{
+  color:var(--gray);
+  font-size:13px;
+}
 
-    .master h3 {
-      font-size: 16px;
-      margin-bottom: 5px;
-    }
+.price{
+  color:var(--primary);
+  font-weight:bold;
+  margin-top:10px;
+}
 
-    .master p {
-      font-size: 13px;
-      color: var(--gray);
-    }
+.favorite{
+  position:absolute;
+  right:12px;
+  top:12px;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:none;
+  background:white;
+  font-size:20px;
+  cursor:pointer;
+}
 
-    .master-rating {
-      margin-top: 8px;
-      color: #f5a623;
-      font-size: 14px;
-    }
+/* MASTERS */
 
-    /* BOTTOM NAVIGATION */
+.masters{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
 
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: white;
-      border-top: 1px solid #eee;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      z-index: 1000;
-    }
+.master{
+  background:white;
+  padding:20px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
 
-    .nav-item {
-      text-align: center;
-      font-size: 12px;
-      color: var(--gray);
-      cursor: pointer;
-    }
+.avatar{
+  width:80px;
+  height:80px;
+  margin:auto;
+  border-radius:50%;
+  background-size:cover;
+  background-position:center;
+  margin-bottom:12px;
+}
 
-    .nav-item.active {
-      color: var(--pink);
-      font-weight: bold;
-    }
+.master h3{
+  margin-bottom:5px;
+}
 
-    .nav-icon {
-      font-size: 22px;
-      display: block;
-      margin-bottom: 3px;
-    }
+.master p{
+  font-size:13px;
+  color:var(--gray);
+}
 
-    /* MOBILE */
+.master-rating{
+  margin-top:8px;
+  color:#f5a623;
+}
 
-    @media (max-width: 700px) {
+/* SEARCH PAGE */
 
-      .hero h1 {
-        font-size: 26px;
-      }
+.search-page{
+  padding-top:25px;
+}
 
-      .categories {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-      }
+.big-title{
+  font-size:28px;
+  margin-bottom:20px;
+}
 
-      .category {
-        padding: 12px 5px;
-      }
+.search-input{
+  width:100%;
+  padding:17px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  outline:none;
+  font-size:16px;
+}
 
-      .category-icon {
-        font-size: 24px;
-      }
+.search-input:focus{
+  border-color:var(--primary);
+}
 
-      .salons {
-        display: flex;
-        overflow-x: auto;
-        gap: 14px;
-        padding-bottom: 10px;
-      }
+.filter-buttons{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  margin:18px 0;
+}
 
-      .salon-card {
-        min-width: 260px;
-      }
+.filter{
+  white-space:nowrap;
+  padding:10px 16px;
+  border-radius:20px;
+  border:none;
+  background:white;
+  cursor:pointer;
+}
 
-      .masters {
-        grid-template-columns: repeat(2, 1fr);
-      }
+.filter.active{
+  background:var(--primary);
+  color:white;
+}
 
-    }
-  </style>
+/* EMPTY */
+
+.empty{
+  text-align:center;
+  padding:60px 20px;
+  color:var(--gray);
+}
+
+.empty-icon{
+  font-size:55px;
+  margin-bottom:15px;
+}
+
+/* BOOKINGS */
+
+.booking-card{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  margin-bottom:15px;
+  box-shadow:var(--shadow);
+}
+
+.booking-card h3{
+  margin-bottom:10px;
+}
+
+.booking-status{
+  display:inline-block;
+  margin-top:12px;
+  padding:7px 12px;
+  background:#e8f8ed;
+  color:#2c9a50;
+  border-radius:15px;
+  font-size:13px;
+}
+
+/* PROFILE */
+
+.profile-card{
+  background:white;
+  padding:25px;
+  border-radius:24px;
+  text-align:center;
+  box-shadow:var(--shadow);
+  margin-top:25px;
+}
+
+.profile-avatar{
+  width:85px;
+  height:85px;
+  background:#ffe5ee;
+  color:var(--primary);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:35px;
+  border-radius:50%;
+  margin:auto;
+}
+
+.profile-card h2{
+  margin-top:15px;
+}
+
+.profile-card p{
+  color:var(--gray);
+  margin-top:7px;
+}
+
+.profile-menu{
+  margin-top:20px;
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+
+.profile-item{
+  padding:18px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:75px;
+  background:white;
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:1000;
+}
+
+.nav-item{
+  border:none;
+  background:none;
+  color:var(--gray);
+  font-size:11px;
+  cursor:pointer;
+  min-width:55px;
+}
+
+.nav-icon{
+  display:block;
+  font-size:22px;
+  margin-bottom:4px;
+}
+
+.nav-item.active{
+  color:var(--primary);
+  font-weight:bold;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  z-index:2000;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+.modal.active{
+  display:flex;
+}
+
+.modal-content{
+  background:white;
+  width:100%;
+  max-width:650px;
+  max-height:92vh;
+  overflow-y:auto;
+  border-radius:28px 28px 0 0;
+  padding:24px;
+  animation:slideUp .3s ease;
+}
+
+@keyframes slideUp{
+  from{transform:translateY(100%)}
+  to{transform:translateY(0)}
+}
+
+.close{
+  float:right;
+  border:none;
+  background:#f5f5f5;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.modal-image{
+  width:100%;
+  height:230px;
+  border-radius:18px;
+  background-size:cover;
+  background-position:center;
+  margin:15px 0;
+}
+
+.modal h2{
+  margin:10px 0;
+}
+
+.modal-text{
+  color:var(--gray);
+  line-height:1.6;
+}
+
+.service-list{
+  margin-top:20px;
+}
+
+.service{
+  display:flex;
+  justify-content:space-between;
+  padding:15px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.book-button{
+  width:100%;
+  border:none;
+  background:var(--primary);
+  color:white;
+  padding:17px;
+  border-radius:16px;
+  font-size:16px;
+  font-weight:bold;
+  margin-top:20px;
+  cursor:pointer;
+}
+
+/* BOOKING MODAL */
+
+.booking-step{
+  margin-top:20px;
+}
+
+.booking-option{
+  padding:15px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  margin-top:10px;
+  cursor:pointer;
+}
+
+.booking-option:hover,
+.booking-option.selected{
+  border-color:var(--primary);
+  background:#fff5f8;
+}
+
+.date-row,
+.time-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.date-btn,
+.time-btn{
+  border:1px solid var(--border);
+  background:white;
+  padding:12px;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+.date-btn.selected,
+.time-btn.selected{
+  background:var(--primary);
+  color:white;
+  border-color:var(--primary);
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  top:85px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#24212a;
+  color:white;
+  padding:14px 20px;
+  border-radius:14px;
+  z-index:5000;
+  display:none;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .hero h1{
+    font-size:26px;
+  }
+
+  .categories{
+    gap:8px;
+  }
+
+  .category{
+    padding:12px 4px;
+  }
+
+  .category-icon{
+    font-size:24px;
+  }
+
+  .salons-grid{
+    display:flex;
+    overflow-x:auto;
+    padding-bottom:10px;
+  }
+
+  .salon-card{
+    min-width:265px;
+  }
+
+  .masters{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+</style>
 </head>
 
 <body>
 
 <header>
   <div class="container header-content">
-    <div class="logo">BeautyUz ✨</div>
-    <div class="location">📍 Ташкент</div>
+
+    <div class="logo" onclick="showPage('home')">
+      BeautyUz ✨
+    </div>
+
+    <div class="city">
+      📍 Ташкент
+    </div>
+
   </div>
 </header>
 
-<main class="container">
 
-  <div class="hero">
-    <h1>Найди своего идеального мастера ✨</h1>
-    <p>Лучшие салоны красоты и мастера рядом с вами</p>
+<!-- HOME -->
 
-    <div class="search-box">
-      <input type="text" placeholder="Поиск салона, услуги или мастера...">
-      <button class="search-btn">🔍</button>
-    </div>
-  </div>
+<div id="home" class="page active">
 
+<div class="container">
 
-  <section>
+<div class="hero">
 
-    <div class="section-title">
-      <h2>Популярные услуги</h2>
-      <span>Все →</span>
-    </div>
+<h1>Найди своего идеального мастера ✨</h1>
 
-    <div class="categories">
+<p>Лучшие салоны красоты и мастера рядом с вами</p>
 
-      <div class="category">
-        <div class="category-icon">💇‍♀️</div>
-        <p>Волосы</p>
-      </div>
+<div class="search-box">
 
-      <div class="category">
-        <div class="category-icon">💅</div>
-        <p>Маникюр</p>
-      </div>
+<input
+id="homeSearch"
+type="text"
+placeholder="Поиск салона, услуги или мастера..."
+onkeydown="if(event.key==='Enter') goSearch()"
+>
 
-      <div class="category">
-        <div class="category-icon">👁️</div>
-        <p>Ресницы</p>
-      </div>
+<button class="search-btn" onclick="goSearch()">🔍</button>
 
-      <div class="category">
-        <div class="category-icon">💄</div>
-        <p>Макияж</p>
-      </div>
+</div>
 
-    </div>
+</div>
 
-  </section>
 
+<div class="section">
 
-  <section>
+<div class="section-header">
 
-    <div class="section-title">
-      <h2>⭐ Лучшие салоны</h2>
-      <span>Все →</span>
-    </div>
+<h2>Популярные услуги</h2>
 
-    <div class="salons">
+<button class="link-btn" onclick="showPage('search')">
+Все →
+</button>
 
-      <div class="salon-card">
+</div>
 
-        <div class="salon-image"
-        style="background-image:url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80');"></div>
 
-        <div class="salon-info">
+<div class="categories">
 
-          <h3>Beauty House</h3>
+<div class="category" onclick="categorySearch('Волосы')">
+<div class="category-icon">💇‍♀️</div>
+<p>Волосы</p>
+</div>
 
-          <div class="rating">⭐ 4.9 (127 отзывов)</div>
+<div class="category" onclick="categorySearch('Маникюр')">
+<div class="category-icon">💅</div>
+<p>Маникюр</p>
+</div>
 
-          <div class="address">📍 Ташкент</div>
+<div class="category" onclick="categorySearch('Ресницы')">
+<div class="category-icon">👁️</div>
+<p>Ресницы</p>
+</div>
 
-          <div class="price">от 100 000 сум</div>
+<div class="category" onclick="categorySearch('Макияж')">
+<div class="category-icon">💄</div>
+<p>Макияж</p>
+</div>
 
-        </div>
+</div>
 
-      </div>
+</div>
 
 
-      <div class="salon-card">
+<div class="section">
 
-        <div class="salon-image"
-        style="background-image:url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80');"></div>
+<div class="section-header">
 
-        <div class="salon-info">
+<h2>⭐ Лучшие салоны</h2>
 
-          <h3>Luxe Beauty Studio</h3>
+<button class="link-btn" onclick="showPage('search')">
+Все →
+</button>
 
-          <div class="rating">⭐ 4.8 (94 отзыва)</div>
+</div>
 
-          <div class="address">📍 Ташкент</div>
+<div class="salons-grid" id="homeSalons"></div>
 
-          <div class="price">от 120 000 сум</div>
+</div>
 
-        </div>
 
-      </div>
+<div class="section">
 
+<div class="section-header">
 
-      <div class="salon-card">
+<h2>🔥 Популярные мастера</h2>
 
-        <div class="salon-image"
-        style="background-image:url('https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=800&q=80');"></div>
+</div>
 
-        <div class="salon-info">
+<div class="masters">
 
-          <h3>Glamour Studio</h3>
+<div class="master">
 
-          <div class="rating">⭐ 4.9 (76 отзывов)</div>
+<div class="avatar"
+style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80')">
+</div>
 
-          <div class="address">📍 Ташкент</div>
+<h3>Малика</h3>
 
-          <div class="price">от 90 000 сум</div>
+<p>💅 Nail Master</p>
 
-        </div>
+<div class="master-rating">⭐ 4.9</div>
 
-      </div>
+</div>
 
-    </div>
 
-  </section>
+<div class="master">
 
+<div class="avatar"
+style="background-image:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80')">
+</div>
 
-  <section>
+<h3>Сабина</h3>
 
-    <div class="section-title">
-      <h2>🔥 Популярные мастера</h2>
-      <span>Все →</span>
-    </div>
+<p>💇 Hair Stylist</p>
 
-    <div class="masters">
+<div class="master-rating">⭐ 4.8</div>
 
-      <div class="master">
+</div>
 
-        <div class="avatar"
-        style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80');"></div>
 
-        <h3>Малика</h3>
+<div class="master">
 
-        <p>💅 Nail Master</p>
+<div class="avatar"
+style="background-image:url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80')">
+</div>
 
-        <div class="master-rating">⭐ 4.9</div>
+<h3>Дина</h3>
 
-      </div>
+<p>👁️ Lash Master</p>
 
+<div class="master-rating">⭐ 4.9</div>
 
-      <div class="master">
+</div>
 
-        <div class="avatar"
-        style="background-image:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80');"></div>
+</div>
 
-        <h3>Сабина</h3>
+</div>
 
-        <p>💇 Hair Stylist</p>
+</div>
 
-        <div class="master-rating">⭐ 4.8</div>
+</div>
 
-      </div>
 
+<!-- SEARCH -->
 
-      <div class="master">
+<div id="search" class="page">
 
-        <div class="avatar"
-        style="background-image:url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80');"></div>
+<div class="container search-page">
 
-        <h3>Дина</h3>
+<h1 class="big-title">Поиск 🔍</h1>
 
-        <p>👁️ Lash Master</p>
+<input
+id="searchInput"
+class="search-input"
+type="text"
+placeholder="Салон, мастер или услуга..."
+oninput="renderSearch()"
+>
 
-        <div class="master-rating">⭐ 4.9</div>
+<div class="filter-buttons">
 
-      </div>
+<button class="filter active" onclick="setFilter('Все',this)">
+Все
+</button>
 
-    </div>
+<button class="filter" onclick="setFilter('Волосы',this)">
+💇 Волосы
+</button>
 
-  </section>
+<button class="filter" onclick="setFilter('Маникюр',this)">
+💅 Маникюр
+</button>
 
-</main>
+<button class="filter" onclick="setFilter('Ресницы',this)">
+👁️ Ресницы
+</button>
 
+<button class="filter" onclick="setFilter('Макияж',this)">
+💄 Макияж
+</button>
+
+</div>
+
+<div class="salons-grid" id="searchResults"></div>
+
+</div>
+
+</div>
+
+
+<!-- BOOKINGS -->
+
+<div id="bookings" class="page">
+
+<div class="container search-page">
+
+<h1 class="big-title">Мои записи 📅</h1>
+
+<div id="bookingsList"></div>
+
+</div>
+
+</div>
+
+
+<!-- FAVORITES -->
+
+<div id="favorites" class="page">
+
+<div class="container search-page">
+
+<h1 class="big-title">Избранное ❤️</h1>
+
+<div class="salons-grid" id="favoritesList"></div>
+
+</div>
+
+</div>
+
+
+<!-- PROFILE -->
+
+<div id="profile" class="page">
+
+<div class="container">
+
+<div class="profile-card">
+
+<div class="profile-avatar">
+👤
+</div>
+
+<h2>Гость</h2>
+
+<p>Войдите, чтобы сохранять все данные</p>
+
+<button class="book-button" onclick="showToast('Регистрация будет добавлена на следующем этапе')">
+Войти / Зарегистрироваться
+</button>
+
+</div>
+
+
+<div class="profile-menu">
+
+<div class="profile-item">
+<span>📅 Мои записи</span>
+<span>›</span>
+</div>
+
+<div class="profile-item">
+<span>❤️ Избранное</span>
+<span>›</span>
+</div>
+
+<div class="profile-item">
+<span>🔔 Уведомления</span>
+<span>›</span>
+</div>
+
+<div class="profile-item">
+<span>⚙️ Настройки</span>
+<span>›</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- BOTTOM NAV -->
 
 <nav class="bottom-nav">
 
-  <div class="nav-item active">
-    <span class="nav-icon">🏠</span>
-    Главная
-  </div>
+<button class="nav-item active" data-page="home" onclick="showPage('home')">
+<span class="nav-icon">🏠</span>
+Главная
+</button>
 
-  <div class="nav-item">
-    <span class="nav-icon">🔍</span>
-    Поиск
-  </div>
+<button class="nav-item" data-page="search" onclick="showPage('search')">
+<span class="nav-icon">🔍</span>
+Поиск
+</button>
 
-  <div class="nav-item">
-    <span class="nav-icon">📅</span>
-    Записи
-  </div>
+<button class="nav-item" data-page="bookings" onclick="showPage('bookings')">
+<span class="nav-icon">📅</span>
+Записи
+</button>
 
-  <div class="nav-item">
-    <span class="nav-icon">❤️</span>
-    Избранное
-  </div>
+<button class="nav-item" data-page="favorites" onclick="showPage('favorites')">
+<span class="nav-icon">❤️</span>
+Избранное
+</button>
 
-  <div class="nav-item">
-    <span class="nav-icon">👤</span>
-    Профиль
-  </div>
+<button class="nav-item" data-page="profile" onclick="showPage('profile')">
+<span class="nav-icon">👤</span>
+Профиль
+</button>
 
 </nav>
 
+
+<!-- SALON MODAL -->
+
+<div class="modal" id="salonModal">
+
+<div class="modal-content">
+
+<button class="close" onclick="closeSalon()">✕</button>
+
+<div id="salonDetails"></div>
+
+</div>
+
+</div>
+
+
+<!-- BOOKING MODAL -->
+
+<div class="modal" id="bookingModal">
+
+<div class="modal-content">
+
+<button class="close" onclick="closeBooking()">✕</button>
+
+<h2>Онлайн-запись 📅</h2>
+
+<div id="bookingContent"></div>
+
+</div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+const salons = [
+
+{
+id:1,
+name:"Beauty House",
+rating:"4.9",
+reviews:127,
+address:"Ташкент",
+category:"Волосы",
+price:"от 100 000 сум",
+image:"https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80",
+description:"Современный салон красоты с профессиональными мастерами и качественным сервисом.",
+services:[
+["Женская стрижка","100 000 сум"],
+["Окрашивание","250 000 сум"],
+["Укладка","80 000 сум"]
+]
+},
+
+{
+id:2,
+name:"Luxe Beauty Studio",
+rating:"4.8",
+reviews:94,
+address:"Ташкент",
+category:"Маникюр",
+price:"от 120 000 сум",
+image:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80",
+description:"Премиальный салон красоты. Маникюр, педикюр и профессиональный уход.",
+services:[
+["Маникюр","120 000 сум"],
+["Педикюр","150 000 сум"],
+["Маникюр + покрытие","180 000 сум"]
+]
+},
+
+{
+id:3,
+name:"Glamour Studio",
+rating:"4.9",
+reviews:76,
+address:"Ташкент",
+category:"Макияж",
+price:"от 90 000 сум",
+image:"https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=800&q=80",
+description:"Красивые образы для любого события и профессиональные мастера.",
+services:[
+["Дневной макияж","90 000 сум"],
+["Вечерний макияж","180 000 сум"],
+["Свадебный макияж","350 000 сум"]
+]
+},
+
+{
+id:4,
+name:"Lash Room",
+rating:"4.7",
+reviews:58,
+address:"Ташкент",
+category:"Ресницы",
+price:"от 110 000 сум",
+image:"https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80",
+description:"Профессиональное наращивание ресниц и оформление бровей.",
+services:[
+["Наращивание ресниц","150 000 сум"],
+["Ламинирование","120 000 сум"],
+["Оформление бровей","80 000 сум"]
+]
+}
+
+];
+
+
+let currentFilter="Все";
+
+let favorites=
+JSON.parse(localStorage.getItem("beautyFavorites")) || [];
+
+let bookings=
+JSON.parse(localStorage.getItem("beautyBookings")) || [];
+
+let selectedSalon=null;
+
+let selectedService=null;
+
+let selectedDate=null;
+
+let selectedTime=null;
+
+
+/* PAGES */
+
+function showPage(page){
+
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active");
+});
+
+document.getElementById(page).classList.add("active");
+
+document.querySelectorAll(".nav-item").forEach(n=>{
+n.classList.remove("active");
+});
+
+const activeNav=document.querySelector(`[data-page="${page}"]`);
+
+if(activeNav){
+activeNav.classList.add("active");
+}
+
+if(page==="search"){
+renderSearch();
+}
+
+if(page==="favorites"){
+renderFavorites();
+}
+
+if(page==="bookings"){
+renderBookings();
+}
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* HOME SALONS */
+
+function renderHome(){
+
+const container=
+document.getElementById("homeSalons");
+
+container.innerHTML=salons.slice(0,3).map(salonCard).join("");
+
+}
+
+
+/* SALON CARD */
+
+function salonCard(salon){
+
+const isFavorite=favorites.includes(salon.id);
+
+return `
+
+<div class="salon-card" onclick="openSalon(${salon.id})">
+
+<button
+class="favorite"
+onclick="event.stopPropagation();toggleFavorite(${salon.id})"
+>
+${isFavorite ? "❤️" : "🤍"}
+</button>
+
+<div
+class="salon-image"
+style="background-image:url('${salon.image}')">
+</div>
+
+<div class="salon-info">
+
+<h3>${salon.name}</h3>
+
+<div class="rating">
+⭐ ${salon.rating} (${salon.reviews} отзывов)
+</div>
+
+<div class="address">
+📍 ${salon.address}
+</div>
+
+<div class="price">
+${salon.price}
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* FAVORITES */
+
+function toggleFavorite(id){
+
+if(favorites.includes(id)){
+
+favorites=favorites.filter(x=>x!==id);
+
+showToast("Удалено из избранного");
+
+}else{
+
+favorites.push(id);
+
+showToast("Добавлено в избранное ❤️");
+
+}
+
+localStorage.setItem(
+"beautyFavorites",
+JSON.stringify(favorites)
+);
+
+renderHome();
+renderSearch();
+renderFavorites();
+
+}
+
+
+function renderFavorites(){
+
+const container=
+document.getElementById("favoritesList");
+
+const favoriteSalons=
+salons.filter(s=>favorites.includes(s.id));
+
+if(favoriteSalons.length===0){
+
+container.innerHTML=`
+
+<div class="empty">
+
+<div class="empty-icon">❤️</div>
+
+<h3>Здесь пока пусто</h3>
+
+<p>Добавляйте любимые салоны в избранное</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+container.innerHTML=
+favoriteSalons.map(salonCard).join("");
+
+}
+
+
+/* SEARCH */
+
+function goSearch(){
+
+const value=
+document.getElementById("homeSearch").value;
+
+showPage("search");
+
+document.getElementById("searchInput").value=value;
+
+renderSearch();
+
+}
+
+
+function categorySearch(category){
+
+showPage("search");
+
+currentFilter=category;
+
+document.querySelectorAll(".filter").forEach(btn=>{
+
+btn.classList.remove("active");
+
+if(btn.textContent.includes(category)){
+btn.classList.add("active");
+}
+
+});
+
+renderSearch();
+
+}
+
+
+function setFilter(filter,button){
+
+currentFilter=filter;
+
+document.querySelectorAll(".filter").forEach(btn=>{
+btn.classList.remove("active");
+});
+
+button.classList.add("active");
+
+renderSearch();
+
+}
+
+
+function renderSearch(){
+
+const input=
+document.getElementById("searchInput");
+
+if(!input)return;
+
+const query=input.value.toLowerCase();
+
+let results=salons.filter(salon=>{
+
+const matchesSearch=
+
+salon.name.toLowerCase().includes(query) ||
+
+salon.category.toLowerCase().includes(query) ||
+
+salon.services.some(service=>
+service[0].toLowerCase().includes(query)
+);
+
+const matchesFilter=
+
+currentFilter==="Все" ||
+
+salon.category===currentFilter;
+
+return matchesSearch && matchesFilter;
+
+});
+
+const container=
+document.getElementById("searchResults");
+
+if(results.length===0){
+
+container.innerHTML=`
+
+<div class="empty">
+
+<div class="empty-icon">🔍</div>
+
+<h3>Ничего не найдено</h3>
+
+<p>Попробуйте изменить поиск</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+container.innerHTML=
+results.map(salonCard).join("");
+
+}
+
+
+/* SALON DETAILS */
+
+function openSalon(id){
+
+selectedSalon=salons.find(s=>s.id===id);
+
+const details=
+document.getElementById("salonDetails");
+
+details.innerHTML=`
+
+<div
+class="modal-image"
+style="background-image:url('${selectedSalon.image}')">
+</div>
+
+<h2>${selectedSalon.name}</h2>
+
+<div class="rating">
+⭐ ${selectedSalon.rating}
+(${selectedSalon.reviews} отзывов)
+</div>
+
+<p class="modal-text">
+
+📍 ${selectedSalon.address}
+
+<br><br>
+
+${selectedSalon.description}
+
+</p>
+
+<div class="service-list">
+
+<h3>Услуги и цены</h3>
+
+${selectedSalon.services.map(service=>`
+
+<div class="service">
+
+<span>${service[0]}</span>
+
+<strong>${service[1]}</strong>
+
+</div>
+
+`).join("")}
+
+</div>
+
+<button
+class="book-button"
+onclick="openBooking()"
+>
+Записаться онлайн 📅
+</button>
+
+`;
+
+document
+.getElementById("salonModal")
+.classList.add("active");
+
+}
+
+
+function closeSalon(){
+
+document
+.getElementById("salonModal")
+.classList.remove("active");
+
+}
+
+
+/* BOOKING */
+
+function openBooking(){
+
+closeSalon();
+
+selectedService=null;
+
+selectedDate=null;
+
+selectedTime=null;
+
+document
+.getElementById("bookingModal")
+.classList.add("active");
+
+renderBooking();
+
+}
+
+
+function renderBooking(){
+
+const content=
+document.getElementById("bookingContent");
+
+content.innerHTML=`
+
+<div class="booking-step">
+
+<h3>1. Выберите услугу</h3>
+
+${selectedSalon.services.map((service,index)=>`
+
+<div
+class="booking-option ${selectedService===index ? "selected":""}"
+onclick="selectService(${index})"
+>
+
+${service[0]}
+
+<strong style="float:right">
+${service[1]}
+</strong>
+
+</div>
+
+`).join("")}
+
+</div>
+
+
+<div class="booking-step">
+
+<h3>2. Выберите дату</h3>
+
+<div class="date-row">
+
+<button class="date-btn ${selectedDate==='Сегодня'?'selected':''}"
+onclick="selectDate('Сегодня')">
+Сегодня
+</button>
+
+<button class="date-btn ${selectedDate==='Завтра'?'selected':''}"
+onclick="selectDate('Завтра')">
+Завтра
+</button>
+
+<button class="date-btn ${selectedDate==='Понедельник'?'selected':''}"
+onclick="selectDate('Понедельник')">
+Понедельник
+</button>
+
+</div>
+
+</div>
+
+
+<div class="booking-step">
+
+<h3>3. Выберите время</h3>
+
+<div class="time-row">
+
+${["10:00","11:00","12:00","14:00","16:00","18:00"]
+.map(time=>`
+
+<button
+class="time-btn ${selectedTime===time?'selected':''}"
+onclick="selectTime('${time}')"
+>
+${time}
+</button>
+
+`).join("")}
+
+</div>
+
+</div>
+
+
+<button
+class="book-button"
+onclick="confirmBooking()"
+>
+Подтвердить запись ✨
+</button>
+
+`;
+
+}
+
+
+function selectService(index){
+
+selectedService=index;
+
+renderBooking();
+
+}
+
+
+function selectDate(date){
+
+selectedDate=date;
+
+renderBooking();
+
+}
+
+
+function selectTime(time){
+
+selectedTime=time;
+
+renderBooking();
+
+}
+
+
+function confirmBooking(){
+
+if(
+selectedService===null ||
+!selectedDate ||
+!selectedTime
+){
+
+showToast("Выберите услугу, дату и время");
+
+return;
+
+}
+
+const booking={
+
+id:Date.now(),
+
+salon:selectedSalon.name,
+
+service:selectedSalon.services[selectedService][0],
+
+price:selectedSalon.services[selectedService][1],
+
+date:selectedDate,
+
+time:selectedTime
+
+};
+
+bookings.push(booking);
+
+localStorage.setItem(
+"beautyBookings",
+JSON.stringify(bookings)
+);
+
+closeBooking();
+
+showToast("Запись успешно создана! 🎉");
+
+renderBookings();
+
+setTimeout(()=>{
+
+showPage("bookings");
+
+},700);
+
+}
+
+
+function closeBooking(){
+
+document
+.getElementById("bookingModal")
+.classList.remove("active");
+
+}
+
+
+/* BOOKINGS */
+
+function renderBookings(){
+
+const container=
+document.getElementById("bookingsList");
+
+if(bookings.length===0){
+
+container.innerHTML=`
+
+<div class="empty">
+
+<div class="empty-icon">📅</div>
+
+<h3>У вас пока нет записей</h3>
+
+<p>Найдите салон и запишитесь онлайн</p>
+
+<button
+class="book-button"
+onclick="showPage('search')"
+style="max-width:300px"
+>
+Найти салон
+</button>
+
+</div>
+
+`;
+
+return;
+
+}
+
+container.innerHTML=
+bookings.slice().reverse().map(booking=>`
+
+<div class="booking-card">
+
+<h3>${booking.salon}</h3>
+
+<p>✨ ${booking.service}</p>
+
+<p style="margin-top:8px">
+📅 ${booking.date}
+</p>
+
+<p style="margin-top:5px">
+🕐 ${booking.time}
+</p>
+
+<p style="margin-top:8px;color:#e85d8c;font-weight:bold">
+${booking.price}
+</p>
+
+<div class="booking-status">
+✓ Запись подтверждена
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* TOAST */
+
+function showToast(message){
+
+const toast=
+document.getElementById("toast");
+
+toast.textContent=message;
+
+toast.style.display="block";
+
+setTimeout(()=>{
+
+toast.style.display="none";
+
+},2500);
+
+}
+
+
+/* CLOSE MODAL */
+
+window.onclick=function(event){
+
+const salonModal=
+document.getElementById("salonModal");
+
+const bookingModal=
+document.getElementById("bookingModal");
+
+if(event.target===salonModal){
+closeSalon();
+}
+
+if(event.target===bookingModal){
+closeBooking();
+}
+
+}
+
+
+/* START */
+
+renderHome();
+
+renderSearch();
+
+renderFavorites();
+
+renderBookings();
+
+</script>
+
 </body>
-</html>
+  </html>
